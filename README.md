@@ -2,11 +2,6 @@
 
 This repository guides you through setting up a **2-tier application** on AWS Cloud using Terraform.
 
-## 🎬 Video Guide
-
-For a visual walkthrough, watch this tutorial:
-[![2-tier Architecture using Terraform](https://img.youtube.com/vi/s8q5B6DLH7s/sddefault.jpg)](https://youtu.be/s8q5B6DLH7s)
-
 ## 🏛 Architecture Overview
 
 ![Architecture diagram](https://github.com/AnkitJodhani/3rdWeekofCloudOps/blob/main/architecture.gif)
@@ -106,4 +101,4 @@ Type `yes` when prompted.
 
 ## 🎉 Success!
 Your 2-tier application is now live on AWS! 🚀
-
+For Refernce : https://youtu.be/s8q5B6DLH7s?si=rfxv0C7R1FbQwoyR 
