@@ -1,51 +1,47 @@
-# 2-tier-application-by-terraform
+# 🌍 Deploying a 2-Tier Application on AWS using Terraform
 
-# 🚀 Challenge 3 - 2-Tier Application Deployment using Terraform (Part of #10WeeksOfCloudOps)
+This repository guides you through setting up a **2-tier application** on AWS Cloud using Terraform.
 
-This repository is dedicated to learning and deploying a **2-tier application** on AWS Cloud using Terraform.
+## 🎬 Video Guide
 
-## 🎥 Learn Visually
-
-If you're a visual learner, check out this video tutorial:
+For a visual walkthrough, watch this tutorial:
 [![2-tier Architecture using Terraform](https://img.youtube.com/vi/s8q5B6DLH7s/sddefault.jpg)](https://youtu.be/s8q5B6DLH7s)
 
-## 🏗 Architecture Overview
+## 🏛 Architecture Overview
 
 ![Architecture diagram](https://github.com/AnkitJodhani/3rdWeekofCloudOps/blob/main/architecture.gif)
 
-[Image Source: Ankit Jodhani](https://github.com/AnkitJodhani/3rdWeekofCloudOps/blob/main/architecture.gif)
+## ⚡ Prerequisites
 
-## 🛠 Prerequisites
+Before getting started, ensure you have:
+- Installed Terraform ([Guide](https://ankitjodhani.hashnode.dev/implementing-two-tier-architecture-in-aws-with-terraform-step-by-step-guide-10weeksofcloudops))
+- Configured AWS CLI
+- Basic understanding of Terraform and AWS services
 
-To set up and deploy this infrastructure, ensure you have:
-- Terraform installed ([Installation Guide](https://ankitjodhani.hashnode.dev/implementing-two-tier-architecture-in-aws-with-terraform-step-by-step-guide-10weeksofcloudops))
-- AWS CLI configured
-- Basic knowledge of Terraform and AWS services
+## ⚙️ Environment Setup
 
-## 📌 Setting Up the Environment
-
-### 1️⃣ Create an S3 Bucket for Terraform State Storage
-To store Terraform state files remotely, create an S3 bucket:
+### 1️⃣ Create an S3 Bucket for State Management
+To store Terraform state remotely:
 ```sh
 aws s3 mb s3://YOUR_BUCKET_NAME
 ```
-✅ **Enable bucket versioning** to recover previous states if needed.
+🔹 **Enable versioning** for safe state recovery.
 
-### 2️⃣ Configure DynamoDB for State Locking
-Create a DynamoDB table for Terraform state locking:
+### 2️⃣ Configure DynamoDB for Locking
+Create a table to manage state locks:
 - Table Name: **Your choice**
-- Partition Key: `LockID` (String type)
+- Partition Key: `LockID` (String)
 
-### 3️⃣ Generate an SSH Key Pair
-To securely access instances, generate a key pair:
+### 3️⃣ Generate SSH Key Pair
+To securely access instances:
 ```sh
 cd modules/key/
 ssh-keygen -t rsa -b 4096 -f client_key
 ```
-Modify Terraform files to use the correct key name.
+Modify Terraform configurations to use the correct key name.
 
-### 4️⃣ Configure Terraform Backend
-Edit `backend.tf` with your S3 bucket and DynamoDB details:
+### 4️⃣ Set Up Terraform Backend
+Edit `backend.tf` and configure:
 ```hcl
 terraform {
   backend "s3" {
@@ -57,13 +53,13 @@ terraform {
 }
 ```
 
-## 🔧 Configuring Variables
-Create a `terraform.tfvars` file to store your infrastructure variables:
+## 🔨 Configuring Variables
+Create a `terraform.tfvars` file:
 ```sh
 vim root/terraform.tfvars
 ```
 
-Add the required variables:
+Define your variables:
 ```hcl
 region                  = "us-east-1"
 project_name            = "my_project"
@@ -78,18 +74,16 @@ certificate_domain_name = "yourdomain.com"
 additional_domain_name  = "sub.yourdomain.com"
 ```
 
-## 🔐 Setting Up AWS Services
+## 🔐 AWS Service Configurations
 ### AWS Certificate Manager (ACM)
-- Ensure you have a valid **issued** certificate.
-- If needed, create one for your domain.
+- Ensure a valid **issued** certificate is available.
 
 ### Route 53 Hosted Zone
 - Verify a **public hosted zone** exists in AWS Route 53.
-- Create one if necessary.
 
 ## 🚀 Deploying the Infrastructure
 
-Navigate to the root directory:
+Navigate to the project directory:
 ```sh
 cd root
 ```
@@ -99,17 +93,17 @@ cd root
 terraform init
 ```
 
-### Preview the Execution Plan
+### Check Execution Plan
 ```sh
 terraform plan
 ```
 
-### Deploy the Infrastructure
+### Deploy Resources
 ```sh
 terraform apply
 ```
-When prompted, type `yes` to confirm.
+Type `yes` when prompted.
 
-## ✅ Completion
-
+## 🎉 Success!
+Your 2-tier application is now live on AWS! 🚀
 
